@@ -25,6 +25,8 @@ namespace BL
 
         public async void CreateFaceListAsync(TextBox faceListTxtBox, Label result)
         {
+            //await FuncReturnsListOfAllMyFaceLists_DoIhaveToUseItAsync();
+
             result.Text = "";
             companyName = faceListTxtBox.Text.Trim();
 
@@ -47,6 +49,7 @@ namespace BL
         {
             if (listName.Length > 64 || Regex.IsMatch(listName, @"^[a-z0-9_-]+$") == false)
                 return false;
+            companyName = listName;
             return true;
         }
 
@@ -57,7 +60,7 @@ namespace BL
             var client = new HttpClient();
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", subscriptionKey);
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "0e122e2fcd89494eb7fa75f392e695f8");
 
             var uri = "https://westeurope.api.cognitive.microsoft.com/face/v1.0/facelists/" + companyName;
 
@@ -121,7 +124,8 @@ namespace BL
             var queryString = HttpUtility.ParseQueryString(string.Empty);
 
             // Request headers
-            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "{subscription key}");
+            //0e122e2fcd89494eb7fa75f392e695f8
+            client.DefaultRequestHeaders.Add("Ocp-Apim-Subscription-Key", "0e122e2fcd89494eb7fa75f392e695f8");
 
             // Request parameters
             queryString["returnRecognitionModel"] = "false";
